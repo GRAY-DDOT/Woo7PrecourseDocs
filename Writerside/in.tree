@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="in"
+                 name="Instance Name"
+                 start-page="starter.md">
+
+    <toc-element topic="우테코-7기-프리코스-문서-관리.md">
+        <toc-element topic="문서-관리-규칙.md"/>
+        <toc-element topic="1주차-문자열-덧셈-계산기.md">
+            <toc-element topic="1주차-SD-문자열-덧셈-계산기.md"/>
+        </toc-element>
+    </toc-element>
+</instance-profile>

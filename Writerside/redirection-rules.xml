@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="401d473b">
+        <description>Created after removal of "README" from Instance Name</description>
+        <accepts>README.html</accepts>
+    </rule>
+    <rule id="18f0134c">
+        <description>Created after removal of "Reference" from Instance Name</description>
+        <accepts>Reference_.html</accepts>
+    </rule>
+    <rule id="4cf1ad0b">
+        <description>Created after removal of "Glossary" from Instance Name</description>
+        <accepts>Glossary.html</accepts>
+    </rule>
+    <rule id="28fa38d">
+        <description>Created after removal of "Style guide" from Instance Name</description>
+        <accepts>Style-guide.html</accepts>
+    </rule>
+    <rule id="1898c2aa">
+        <description>Created after removal of "Contributing guide" from Instance Name</description>
+        <accepts>Contributing-guide.html</accepts>
+    </rule>
+    <rule id="4f8c907f">
+        <description>Created after removal of "How to" from Instance Name</description>
+        <accepts>How-to.html</accepts>
+    </rule>
+    <rule id="54db66fb">
+        <description>Created after removal of "Overview" from Instance Name</description>
+        <accepts>Overview.html</accepts>
+    </rule>
+    <rule id="3acc15a8">
+        <description>Created after removal of "Reference" from Instance Name</description>
+        <accepts>Reference.html</accepts>
+    </rule>
+    <rule id="17108e74">
+        <description>Created after removal of "Tutorial" from Instance Name</description>
+        <accepts>Tutorial.html</accepts>
+    </rule>
+    <rule id="3be4d9fc">
+        <description>Created after removal of "Section Starting Page" from Instance Name</description>
+        <accepts>Section-Starting-Page.html</accepts>
+    </rule>
+    <rule id="c726ab6">
+        <description>Created after removal of "Bug report" from Instance Name</description>
+        <accepts>Bug-report.html</accepts>
+    </rule>
+    <rule id="51817e33">
+        <description>Created after removal of "Starter" from Instance Name</description>
+        <accepts>starter.html</accepts>
+    </rule>
+    <rule id="4a12fd7b">
+        <description>Created after removal of "README" from Instance Name</description>
+        <accepts>README.html</accepts>
+    </rule>
+    <rule id="7566100d">
+        <description>Created after removal of "Reference" from Instance Name</description>
+        <accepts>Reference_.html</accepts>
+    </rule>
+    <rule id="205d3f7e">
+        <description>Created after removal of "Glossary" from Instance Name</description>
+        <accepts>Glossary.html</accepts>
+    </rule>
+    <rule id="6aa90aad">
+        <description>Created after removal of "Style guide" from Instance Name</description>
+        <accepts>Style-guide.html</accepts>
+    </rule>
+    <rule id="6ac4698d">
+        <description>Created after removal of "Contributing guide" from Instance Name</description>
+        <accepts>Contributing-guide.html</accepts>
+    </rule>
+    <rule id="494fc647">
+        <description>Created after removal of "How to" from Instance Name</description>
+        <accepts>How-to.html</accepts>
+    </rule>
+    <rule id="70af2fd3">
+        <description>Created after removal of "Overview" from Instance Name</description>
+        <accepts>Overview.html</accepts>
+    </rule>
+    <rule id="2146ff17">
+        <description>Created after removal of "Reference" from Instance Name</description>
+        <accepts>Reference.html</accepts>
+    </rule>
+    <rule id="2592d50f">
+        <description>Created after removal of "Tutorial" from Instance Name</description>
+        <accepts>Tutorial.html</accepts>
+    </rule>
+    <rule id="54a6c47a">
+        <description>Created after removal of "Section Starting Page" from Instance Name</description>
+        <accepts>Section-Starting-Page.html</accepts>
+    </rule>
+    <rule id="16557313">
+        <description>Created after removal of "Bug report" from Instance Name</description>
+        <accepts>Bug-report.html</accepts>
+    </rule>
+</rules>
