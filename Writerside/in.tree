@@ -3,8 +3,8 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="in"
-                 name="Instance Name"
-                 start-page="starter.md">
+                  name="Instance Name"
+                  start-page="우테코-7기-프리코스-문서-관리.md">
 
     <toc-element topic="우테코-7기-프리코스-문서-관리.md">
         <toc-element topic="문서-관리-규칙.md"/>
