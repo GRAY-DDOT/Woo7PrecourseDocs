@@ -5,9 +5,13 @@ on:
     branches: ["main"]
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  pages: write  # GitHub Pages 배포를 위한 권한 추가
+
 env:
-  INSTANCE: 'Writerside/in'
-  ARTIFACT: 'webHelpIN2-all.zip'
+  INSTANCE: 'Writerside/in'  # 프로젝트의 버전으로 설정
+  ARTIFACT: 'webHelpIN2-all.zip'  # 프로젝트에 맞는 아티팩트 이름
   DOCKER_VERSION: '242.21870'
 
 jobs:
@@ -56,9 +60,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: [build, test]
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write     # id-token에 write 권한 추가
-      contents: read      # 레포지토리 내용 읽기 권한 추가
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -66,7 +67,7 @@ jobs:
           name: docs
 
       - name: Unzip artifact
-        run: unzip -O UTF-8 -qq '${{ env.ARTIFACT }}' -d dir
+        run: unzip -O UTF-8 -qq 'artifacts/${{ env.ARTIFACT }}' -d dir
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
