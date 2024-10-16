@@ -30,7 +30,7 @@
 * 미션 구현 완료 후 GitHub 통해 제출
     * 제출 방법: [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse)
 * 최종 제출 : GitHub 미션 제출, [우아한테크코스 지원 플랫폼](https://apply.techcourse.co.kr/)에 PR 링크 포함 제출
-    * 자세한 안내는 [제출 가이드](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse#%EC%A0%9C%EC%B6%9C-%EA%B0%80%EC%9D%B4%EB%93%9C)를 참고한다.
+    * 자세한 안내는 제출 가이드를 참고한다.
     * 과제 수행 중 느낀 점, 배운 점, 많은 시간을 투자한 부분 등 자유롭게 작성
 
 ### 과제 제출 전 체크 리스트
