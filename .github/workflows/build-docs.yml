@@ -10,26 +10,27 @@ permissions:
   pages: write
 
 env:
-  INSTANCE: 'Writerside/in'  # 프로젝트 버전에 맞는 값
-  ARTIFACT: 'webHelpIN2-all.zip'  # 프로젝트에 맞는 값
+  INSTANCE: 'Writerside/IN'
+  ARTIFACT: 'webHelpIN2-all.zip'
   DOCKER_VERSION: '242.21870'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Build Writerside docs using Docker
+      - name: Build docs using Writerside Docker builder
         uses: JetBrains/writerside-github-action@v4
         with:
           instance: ${{ env.INSTANCE }}
           artifact: ${{ env.ARTIFACT }}
           docker-version: ${{ env.DOCKER_VERSION }}
 
-      - name: Upload documentation
+      - name: Save artifact with build results
         uses: actions/upload-artifact@v4
         with:
           name: docs
@@ -37,11 +38,9 @@ jobs:
             artifacts/${{ env.ARTIFACT }}
             artifacts/report.json
           retention-days: 7
-
   test:
     needs: build
     runs-on: ubuntu-latest
-
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -53,29 +52,25 @@ jobs:
         uses: JetBrains/writerside-checker-action@v1
         with:
           instance: ${{ env.INSTANCE }}
-
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: test
+    needs: [build, test]
     runs-on: ubuntu-latest
-
     steps:
-      - name: Download artifact
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: docs
 
       - name: Unzip artifact
-        uses: montudor/action-zip@v1
-        with:
-          args: unzip -qq ${{ env.ARTIFACT }} -d dir
+        run: unzip -O UTF-8 -qq '${{ env.ARTIFACT }}' -d dir
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v4
 
-      - name: Upload artifact
+      - name: Package and upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dir
