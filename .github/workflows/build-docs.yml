@@ -34,6 +34,7 @@ jobs:
             artifacts/${{ env.ARTIFACT }}
             artifacts/report.json
           retention-days: 7
+
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -48,12 +49,16 @@ jobs:
         uses: JetBrains/writerside-checker-action@v1
         with:
           instance: ${{ env.INSTANCE }}
+
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     needs: [build, test]
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write     # id-token에 write 권한 추가
+      contents: read      # 레포지토리 내용 읽기 권한 추가
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
