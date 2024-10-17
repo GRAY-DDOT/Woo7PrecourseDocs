@@ -98,4 +98,8 @@
         <description>Created after removal of "Bug report" from Instance Name</description>
         <accepts>Bug-report.html</accepts>
     </rule>
+    <rule id="2fc10b73">
+        <description>Created after removal of "About ex" from DDOTWoowaPreDocs</description>
+        <accepts>ex.html</accepts>
+    </rule>
 </rules>

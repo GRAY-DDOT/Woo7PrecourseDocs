@@ -2,8 +2,8 @@
 <!DOCTYPE instance-profile
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
-<instance-profile id="in"
-                  name="Instance Name"
+<instance-profile id="ddotdocs"
+                  name="DDOTWoowaPreDocs"
                   start-page="우테코-7기-프리코스-문서-관리.md">
 
     <toc-element topic="우테코-7기-프리코스-문서-관리.md">
@@ -14,5 +14,14 @@
         <toc-element topic="1주차-LD-문자열-덧셈-계산기.md"/>
         <toc-element topic="1주차-RS-문자열-뎃셈-계산기.md"/>
     </toc-element>
-    <toc-element topic="SN-학습-노트정리.md"/>
+    <toc-element topic="SN-학습-노트정리.md">
+        <toc-element topic="01-WriterSide로-개발-문서-배포하기.md"/>
+        <toc-element topic="02-Git-VCS-Github.md"/>
+        <toc-element topic="03-TDD는-객체-지향-설계-방법.md"/>
+        <toc-element topic="04-미션에-도움되는-Java-String-클래스와-메서드.md"/>
+        <toc-element topic="05-Java-예외-처리.md"/>
+        <toc-element topic="06-유스케이스와-도메인.md">
+        </toc-element>
+        <toc-element topic="07-Mermaid를-이용한-다이어그램-그리기.md"/>
+    </toc-element>
 </instance-profile>
