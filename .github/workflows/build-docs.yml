@@ -11,7 +11,7 @@ permissions:
 
 env:
   INSTANCE: 'Writerside/ddotdocs'
-  ARTIFACT: 'webHelpDDOTDOCS-all.zip'
+  ARTIFACT: 'webHelpDDOTDOCS2-all.zip'
   DOCKER_VERSION: '242.21870'
 
 jobs:
