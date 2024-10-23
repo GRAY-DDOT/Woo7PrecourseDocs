@@ -73,7 +73,7 @@ jobs:
       - name: Package and upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dir
+          path: dir/Woo7Docs
 
       - name: Deploy to GitHub Pages
         id: deployment
