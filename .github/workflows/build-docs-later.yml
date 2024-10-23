@@ -1,4 +1,4 @@
-name: Build documentation
+name: Build and deploy two documentation sites
 
 on:
   push:
@@ -10,12 +10,10 @@ permissions:
   pages: write
 
 env:
-  INSTANCE: 'Writerside/ul'
-  ARTIFACT: 'webHelpUL2-all.zip'
   DOCKER_VERSION: '242.21870'
 
 jobs:
-  build:
+  build-Woo7Docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,49 +21,65 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Build docs using Writerside Docker builder
+      - name: Build Woo7Docs using Writerside Docker builder
         uses: JetBrains/writerside-github-action@v4
         with:
-          instance: ${{ env.INSTANCE }}
-          artifact: ${{ env.ARTIFACT }}
+          instance: 'Writerside/ddotdocs'
+          artifact: 'webHelpDDOTDOCS2-all.zip'
           docker-version: ${{ env.DOCKER_VERSION }}
 
-      - name: Save artifact with build results
+      - name: Save Woo7Docs build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: docs
+          name: Woo7Docs
           path: |
-            artifacts/${{ env.ARTIFACT }}
+            artifacts/webHelpDDOTDOCS2-all.zip
             artifacts/report.json
           retention-days: 7
-  test:
-    needs: build
+
+  build-Not-Yet:
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          name: docs
-          path: artifacts
+          fetch-depth: 0
 
-      - name: Test documentation
-        uses: JetBrains/writerside-checker-action@v1
+      - name: Build Not-Yet using Writerside Docker builder
+        uses: JetBrains/writerside-github-action@v4
         with:
-          instance: ${{ env.INSTANCE }}
+          instance: 'Writerside/ul'
+          artifact: 'webHelpUL2-all.zip'
+          docker-version: ${{ env.DOCKER_VERSION }}
+
+      - name: Save Not-Yet build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Not-Yet
+          path: |
+            artifacts/webHelpUL2-all.zip
+            artifacts/report.json
+          retention-days: 7
+
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    needs: [build, test]
+    needs: [build-Woo7Docs, build-Not-Yet]
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifacts
+      - name: Download Woo7Docs artifacts
         uses: actions/download-artifact@v4
         with:
-          name: docs
+          name: Woo7Docs
 
-      - name: Unzip artifact
-        run: unzip -O UTF-8 -qq '${{ env.ARTIFACT }}' -d dir
+      - name: Download Not-Yet artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: Not-Yet
+
+      - name: Unzip Woo7Docs artifact
+        run: unzip -O UTF-8 -qq 'artifacts/webHelpDDOTDOCS2-all.zip' -d Woo7Docs
+
+      - name: Unzip Not-Yet artifact
+        run: unzip -O UTF-8 -qq 'artifacts/webHelpUL2-all.zip' -d Not-Yet
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -73,7 +87,9 @@ jobs:
       - name: Package and upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dir/Not-Yet
+          path: |
+            Woo7Docs  # Woo7Docs 경로
+            Not-Yet  # Not-Yet 경로
 
       - name: Deploy to GitHub Pages
         id: deployment
