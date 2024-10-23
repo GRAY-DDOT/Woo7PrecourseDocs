@@ -10,9 +10,14 @@
         </variables>
     </build-profile>
 
+    <build-profile instance="ul">
+        <variables>
+            <noindex-content>false</noindex-content>
+        </variables>
+    </build-profile>
+
     <footer>
         <social type="blog" href="https://velog.io/@dev-ddot">또찌의 Blog</social>
-
         <copyright>2024 DDOT 또찌.</copyright>
     </footer>
 

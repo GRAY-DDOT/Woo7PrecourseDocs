@@ -1,3 +1,0 @@
-# 02. Git, VCS, Github
-
-Start typing here...

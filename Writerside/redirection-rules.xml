@@ -102,4 +102,20 @@
         <description>Created after removal of "About ex" from DDOTWoowaPreDocs</description>
         <accepts>ex.html</accepts>
     </rule>
+    <rule id="3f5f58df">
+        <description>Created after removal of "유스케이스와 도메인" from DDOTWoowaPreDocs</description>
+        <accepts>유스케이스와-도메인.html</accepts>
+    </rule>
+    <rule id="6a16f983">
+        <description>Created after removal of "Mermaid를 이용한 다이어그램 그리기" from DDOTWoowaPreDocs</description>
+        <accepts>Mermaid를-이용한-다이어그램-그리기.html</accepts>
+    </rule>
+    <rule id="43a03209">
+        <description>Created after removal of "Java" from Upload Lator</description>
+        <accepts>java.html</accepts>
+    </rule>
+    <rule id="262f0ec2">
+        <description>Created after removal of "나중에 업로드" from Upload Lator</description>
+        <accepts>upload-lator.html</accepts>
+    </rule>
 </rules>
