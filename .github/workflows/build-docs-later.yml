@@ -1,4 +1,4 @@
-name: Build and deploy two documentation sites
+name: Build and deploy Woo7Docs and Not-Yet
 
 on:
   push:
@@ -13,10 +13,10 @@ env:
   DOCKER_VERSION: '242.21870'
 
 jobs:
-  build-Woo7Docs:
+  build-site1:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository for site1
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -28,19 +28,19 @@ jobs:
           artifact: 'webHelpDDOTDOCS2-all.zip'
           docker-version: ${{ env.DOCKER_VERSION }}
 
-      - name: Save Woo7Docs build artifact
+      - name: Save Woo7Docs artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Woo7Docs
+          name: docs-site1
           path: |
             artifacts/webHelpDDOTDOCS2-all.zip
             artifacts/report.json
           retention-days: 7
 
-  build-Not-Yet:
+  build-site2:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout repository for site2
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -52,28 +52,56 @@ jobs:
           artifact: 'webHelpUL2-all.zip'
           docker-version: ${{ env.DOCKER_VERSION }}
 
-      - name: Save Not-Yet build artifact
+      - name: Save Not-Yet artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Not-Yet
+          name: docs-site2
           path: |
             artifacts/webHelpUL2-all.zip
             artifacts/report.json
           retention-days: 7
 
-  deploy:
-    needs: [build-Woo7Docs, build-Not-Yet]
+  test-site1:
+    needs: build-site1
     runs-on: ubuntu-latest
     steps:
       - name: Download Woo7Docs artifacts
         uses: actions/download-artifact@v4
         with:
-          name: Woo7Docs
+          name: docs-site1
+
+      - name: Test Woo7Docs documentation
+        uses: JetBrains/writerside-checker-action@v1
+        with:
+          instance: 'Writerside/ddotdocs'
+
+  test-site2:
+    needs: build-site2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Not-Yet artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-site2
+
+      - name: Test Not-Yet documentation
+        uses: JetBrains/writerside-checker-action@v1
+        with:
+          instance: 'Writerside/ul'
+
+  deploy:
+    needs: [test-site1, test-site2]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Woo7Docs artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-site1
 
       - name: Download Not-Yet artifacts
         uses: actions/download-artifact@v4
         with:
-          name: Not-Yet
+          name: docs-site2
 
       - name: Unzip Woo7Docs artifact
         run: unzip -O UTF-8 -qq 'artifacts/webHelpDDOTDOCS2-all.zip' -d Woo7Docs
