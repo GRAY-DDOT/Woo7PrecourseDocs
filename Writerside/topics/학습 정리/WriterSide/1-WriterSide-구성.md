@@ -37,7 +37,8 @@ WriterSide의 **가장 큰 구성은 프로젝트**입니다.
 ```html
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE instance-profile
-        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+        SYSTEM "https://resources.jetbrains.com
+        /writerside/1.0/product-profile.dtd">
 
 <instance-profile id="ddotdocs"
                   name="DDOTWoowaPreDocs"
