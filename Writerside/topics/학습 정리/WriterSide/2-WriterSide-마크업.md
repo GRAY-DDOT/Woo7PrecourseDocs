@@ -1,22 +1,42 @@
 # WriterSide 마크업, MD 중심으로
 
-## xml과 md 혼용 가능
+> 일부 기능은 XML로만 가는한 것들이 있습니다.
+> MD 위주로 작성하여 해당 요소는 제외했습니다.
+> [공식문서](https://www.jetbrains.com/help/writerside/semantic-markup-reference.html)를 확인해주세요!
+> 아참!
+> MD 요소에 대해 속성을 정의한 경우는 서식 재정렬 후 들여쓰기 수준을 점검해주세요!!
+> 한 칸 더 들어가는 버그가 있어요!
+
+## XML과 MD 혼용 가능
+
+WriterSide에서는 XML과 MD(Markdown)를 함께 사용하여 문서를 작성할 수 있습니다.
+기본적으로 문서는 .xml 또는 .md를 골라 생성해야합니다.
+하지만 MD 문서에서 XML 문법을 사용할 수 있습니다.
+각 형식의 장점을 살려, 보다 유연하게 문서를 구성할 수 있습니다.
+XML을 통해 구조적인 데이터 관리를 하고, MD는 간단한 텍스트 작성에 용이합니다.
+다만 요소의 정렬이나 배치관련 옵션은 아직 없는 것 같아요.
+따라서 저는 좌우 정렬할 요소는 테이블(표)를 이용해 구성했습니다.
 
 ## WriterSide의 MD 문법
 
 ### 챕터와 헤더
 
 ```
-    # : h1 - 각 토픽 문서의 제목입니다. 토픽, 문서당 하나만 지정 가능합니다.
+    # : h1 - 각 토픽 문서의 제목입니다. 토픽, (중요!)문서당 하나만 지정 가능합니다.
     ## : h2 - 각 토핑의 최상위 챕터 입니다.
     ### : h3
-    #### : h4
+    #### : h4 
     ##### : h5
     ###### : h6 - WriterSide 에서 지원하는 가장 낮은 챕터 구성입니다.
 ```
 
-각 챕터는 `{collapsible="true"}`를 우측에 추가해 접을 수 있습니다.
+각 챕터의 오른쪽에 `{collapsible="true"}`를 우측에 추가해 접을 수 있습니다.
 하지만 해당 설정이 적용된 컨텐츠에 대해서 검색되지 않으므로 사용에 주의가 필요합니다.
+
+```markdown
+    ### 챕터 이름 {collapsible="true"}
+    // 접을 수 있습니다.
+```
 
 ### 접기(Collapsible elements)
 
@@ -26,40 +46,40 @@
 
 ### 링크
 
+링크는 다음과 같이 작성할 수 있습니다.
+링크는 문서 내부, 외부 URL 모두에 동일하게 사용가능합니다.
+링크 이름에는 아래와 같이 강조를 위한 표현을 사용할 수 있습니다.
+이름과 링크가 똑같다면 이름을 비우도록 권장됩니다.
+또한 특정 챕터로 이동하도록 작성할 수 있습니다.
+토픽으로 등록된 MD 문서를 링크하는 경우 `.md`이 붙습니다.
+다만 토픽으로 등록된 것이 확실한 경우`.md`를 붙이지 않고 토픽 자체를 링크할 수 있습니다.
+
 ```
-    [Link text](target.topic)
+    [Link text](target.topic.md)
     [`Link text`](target.topic)
     [**Link text**](target.topic)
     [](target.topic)
+    [모듈 내부의 상대 주소도 사용 가능합니다](pkg.target)
 
-    ## Chapter one
-
-    ## Chapter two {id="second"}
-
-    ## Example links
-
-    Here is [a link to the first chapter](#chapter-one).
+    ## 첫 챕터
+    ## 챕터 2 {id="second"}
+    이것은 [첫 챕터로 이동하는 링크](#첫-챕터)
+    이건은 [id로 챕터를 지정한 링크](#second)
+    이것은 [다른 토픽으로의 링크](다른-토픽-이름.md)
+    이것은 [다른 토픽의 "이런" 챕터로의 링크](다른-토픽-이름.md#이런)
     
-    Here is [a link to the second chapter](#second).
-    
-    Here is [a link to another topic](another_topic.md).
-    
-    Here is [a link to an anchor in another topic](another_topic.md#anchor).
-    
-    Here is [a link to the JetBrains website](https://www.jetbrains.com/).
+    URL [JetBrains website](https://www.jetbrains.com/)
 
 ```
 
-Press `⌘Сmd` `N` to open the Insert menu, and then select Link.
-
-Alternatively, press
-`⇧Shift` `⌘Сmd` `U`
-. If you previously copied a URL to the clipboard,
-Writerside will insert the URL as the target of the link.
+링크를 클립보드로 복사한 후 단축키로 쉽게 링크를 삽입할 수 있습니다.
+<p> macOS <shortcut>⇧Shift⌘Сmd+U</shortcut>, 삽입 옵션 전체는  <shortcut>⌘Сmd+N</shortcut> </p>
+<p> Windows <shortcut>Ctrl+Shift+U</shortcut>, 삽입 옵션 전체는 <shortcut>Alt+Insert</shortcut> </p>
 
 ### 이미지
 
-![WriterSideThumbnail.png](WriterSideThumbnail.png)
+다음과 같은 방식으로 이미지를 삽입하고 효과를 적용할 수 있습니다.
+MD 로는 효과가 한정되어있습니다. 파일 지정 방식은 링크 삽입 방식과 동일합니다.
 
 ```
     ![Alt Text](image.png){ width="450" }
@@ -69,7 +89,7 @@ Writerside will insert the URL as the target of the link.
 
 ```
 
-![Alt Text](WriterSideThumbnail.png){style=""}
+아래의 테이블은 이미지에 적용할 수 있는 효과입니다.
 
 |  옵션  | border-effect | thumbnail | style  |
 |:----:|:-------------:|:---------:|:------:|
@@ -77,25 +97,47 @@ Writerside will insert the URL as the target of the link.
 |      |     line      |   false   | inline |
 |      |     none      |           |  auto  |
 
-Press `⌘Сmd` `N` to open the Insert menu, and then select Link.
-
-Alternatively, press
-`⌘Сmd` `U`
-
-```
-  Click the ![check icon][check]{width="16"} icon to mark an item as done.
-
-[check]: check-icon.png
-```
+WriterSide 에서는 아직 자체적인 이미지 정렬 기능을 제공하지 않습니다.
+대체적으로 테이블 내부에 삽입하는 방법을 사용할 수 있습니다.
+이때 이미지 삽입 표현은 XML으로 전환해야합니다.
 
 ### 비디오
 
+비디오를 첨부할 수 있습니다.
+MD 표현은 지원하지 않지만 MD 문서에서 해당 XML 문법을 사용할 수 있습니다.
+로컬 파일은 미리보기 이미지를 별도로 설정해야합니다.
+
+```xml
+
+<video src="sample.mp4" preview-src="preview-image.png"/>
+<video src="https://youtu.be/BeJu9bMPLGU"/>
+```
+
 ### 리스트
 
+리스트 요소는 순서가 있는 리스트와 순서가 없는 리스트가 있습니다.
+
+순서가 있는 리스트의 경우 다음과 같이 속성을 적용할 수 있습니다.
+
 ```
-1. First item.
-    1. First indented item.
-    2. Second indented item.
+1. 처음
+    1. 처음의 하나
+    2. 처음의 둘
+                        // 알파벳 리스트로 바꿉니다.(기본값 1)
+   {type="alpha-lower"} // 대상과 같은 수준의 들여쓰기가 필요합니다.
+                        // 대상 사이에 빈 줄이 있어야 합니다.
+2. Second item.
+3. Third item
+4. Fourth item
+            // 대상 리스트의 시작 번호를 바꿀수 있습니다.(기본값="1")
+{start="2"} // 대상과 같은 수준의 들여쓰기가 필요합니다.
+            // 대상 사이에 빈 줄이 있어야 합니다.
+            // 1 이상만 지정 가능합니다.
+```
+
+1. 처음
+    1. 처음의 하나
+    2. 처음의 둘
 
    {type="alpha-lower"}
 2. Second item.
@@ -104,100 +146,156 @@ Alternatively, press
 
 {start="2"}
 
-- Some list item
-- Another list item
-- Yet another list item
-    - Some indented item
-    - Another indented item
-- One more item
+
+```markdown
+- 리스트는
+- 이렇게
+    - 작성할 수
+    - 있지만
+- 2~8개 정도만 포함하라고 추천합니다.
++ -, +, * 3개 입니다.
+* 결과는 하나입니다.
 ```
+- 리스트는
+- 이렇게
+    - 작성할 수
+    - 있지만
+- 2~8개 정도만 포함하라고 추천합니다.
++ 사용가능한 기호는 -, +, * 3개 입니다.
+* -, +, * 3개 입니다.
+* 결과는 하나입니다.
 
-1. First item.
-    1. First indented item.
-    2. Second indented item.
-       {type="alpha-lower"}
-2. Second item.
-3. Third item
-4. Fourth item
-   {start="2"}
 
-
-- Some list item
-
-* Another list item
-
-- Yet another list item
-    + Some indented item
-
-    - Another indented item
-- One more item
-
-목록에 대한 지침
-엄격한 규칙은 아니지만, 목록을 추가할 때 다음 사항을 명심하는 것이 좋습니다.
-목록 앞에 문단을 써서 소개하십시오. 소개가 없는 목록은 불분명할 수 있습니다.
-목록에 2~8개 항목을 포함합니다. 항목이 너무 많으면 압도적일 수 있으며 아무것도 강조하지 못할 것입니다.
-짧은 항목의 긴 목록이 필요한 경우 여러 열을 사용하는 것을 고려하세요.
-각 항목의 크기를 최대한 제한하세요. 목록 항목을 가장 기본적인 아이디어 이상으로 확장하지 마세요.
-각 항목에 대해 많은 세부 정보를 제공해야 하는 경우 정의 목록을 사용하거나 콘텐츠를 장 으로 나누는 것을 고려하세요.
-목록을 과도하게 사용하지 마십시오.
-목록은 문단 사이에 구조를 추가하는 좋은 방법이지만 모든 내용을 목록으로 만드는 것은 필요한 맥락을 제공하지 못합니다.
-또한 표와 탭과 같은 다른 요소를 고려하십시오.
-
-#### 여러열
-
+### 여러 열의 리스트
+만약 리스트가 너무 길다면 열을 분할할 수 있습니다.
 ```
-- this
-- is
-- a
-- long
-- list
-- rendered
-- in
-- multiple
-- columns
+-- 너무
+- 긴
+- 리스트는
+- 가독성이
+- 떨어집니다
+- 다중 열 리스트를
+- 사용해보세요
+- 다른 서비스에도
+- 비슷한 것들이 있죠?
 
 {columns="3"}
+
+- 1)순서가 있는 경우는    //1) 뒤에 띄어쓰기 하면 안돼요!!
+- 2)이렇게             //순서가 있는 리스트로 인식됩니다.
+- 3)해보세요
+- 4)몇 개까지
+- 5)될까요?
+- 5개 부터는 문제가 생기네요
+- 4개까지만 지정해보세요
+
+{columns="5"}
 ```
 
-- this
-- is
-- a
-- long
-- list
-- rendered
-- in
-- multiple
-- columns
-  {columns="3"}
+- 너무
+- 긴
+- 리스트는
+- 가독성이
+- 떨어집니다
+- 다중 열 리스트를
+- 사용해보세요
+- 다른 서비스에도
+- 비슷한 것들이 있죠?
+
+{columns="3"}
+
+- 1)순서가 있는 경우는
+- 2)이렇게
+- 3)해보세요
+- 4)몇 개까지
+- 5)될까요?
+- 5개 부터는 문제가 생기네요
+- 4개까지만 지정해보세요
+
+{columns="5"}
+
+
 
 ### 정의 목록
+정의 목록은 특별한 형태의 리스트입니다. 용어의 정의를 표현할 수 있어요.
+아래와 같이 다양한 스타일을 적용할 수 있습니다.
+자세한 속성은 공식 문서를 참고해주세요!
+[공식 문서](https://www.jetbrains.com/help/writerside/lists.html#definition_lists)
+
+```markdown
+정의 목록
+: 정의 목록은 용어의 정의를 표현할 수 있는 목록이에요
+```
+
+정의 목록
+: 정의 목록은 용어의 정의를 표현할 수 있는 목록이에요
+
+
+### 테이블, 그런데 속성을 곁드린..
+```markdown
+
+|   |   |   |
+|---|---|---|
+|   |   |   |
+|   |   |   |
+{style="header-row"}    // 기본 설정이에요
+
+|   |   |   |   |
+|---|---|---|---|
+|   |   |   |   |
+
+{style="header-column"}
+
+
+|   |   |   |
+|---|---|---|
+|   |   |   |
+|   |   |   |
+
+{style="both"}
+
+
+|   |   |   |
+|---|---|---|
+|   |   |   |
+|   |   |   |
+
+{style="none"}
 
 ```
-First Term
-: This is the definition of the first term.
 
-Second Term
-: This is the definition of the second term.
-```
+|   |   |   |
+|---|---|---|
+|   |   |   |
+|   |   |   |
+{style="header-row"}
 
-First Term
-: This is the definition of the first term.
+|   |   |   |   |
+|---|---|---|---|
+|   |   |   |   |
 
-Second Term
-: This is the definition of the second term.
+{style="header-column"}
 
-type attribute
-: full wide medium narrow compact
-If you want to show titles of definition list items in the topic navigation,
 
-[//]: # (add <show-structure for="def"/> to the topic. For more information, see <show-structure>.)
+|   |   |   |
+|---|---|---|
+|   |   |   |
+|   |   |   |
 
-### 테이블 자세한 설정은 xml
+{style="both"}
 
-header-row
-header-column
-both
-none
+
+|   |   |   |
+|---|---|---|
+|   |   |   |
+|   |   |   |
+
+{style="none"}
+
+XML 로는 더 많은 조작을 할 수 있습니다.
+링크를 확인해주세요!
+[공식 문서](https://www.jetbrains.com/help/writerside/tables.html)
+ 
 
 ### 탭
 
@@ -234,75 +332,81 @@ none
 ### 코드
 
 #### 인라인 코드
+```text
+인라인 코드는 `이렇게` 문장 안에 코드를 넣은 거에요!
+`java.lang.String`은 문자열 클래스입니다.
+```
+인라인 코드는 `이렇게` 문장 안에 코드를 넣은 거에요!
+`java.lang.String`은 문자열 클래스입니다.
 
 #### 코드 블럭
-
-If you need to provide a sample of XML or HTML code,
-wrap the contents of the code block with a CDATA section.
-This will prevent Writerside from processing tags.
-You can also use an intention action for this.
-
+코드 블럭은 백틱 (`) 3개로 묶어요
+```text
+    ```여기에 사용하는 언어를 적으면 아래 코드에 효과가 적용됩니다!
+    여기가 본문이에요
+    ```
+    
+    ```Java
+    public class ThisIsExampm {
+        thisIsExampleMethod();
+        int thisis;
+    }
 ```
-<code-block lang="xml">
-    <![CDATA[
-        <some-tag>text in tag</some-tag>
-    ]]>
-</code-block>
 ```
 
-Alternatively, you can escape the < and > characters using &lt; and &gt;.
+```여기에 사용하는 언어를 적으면 아래 코드에 효과가 적용됩니다!
+    여기가 본문이에요
+```
 
-<code-block lang="xml">
-    &lt;some-tag&gt;text in tag&lt;/some-tag&gt;
-</code-block>
+```Java
+    public class ThisIsExampm {
+        thisIsExampleMethod();
+        int thisis;
+    }
+```
 
-https://www.jetbrains.com/help/writerside/code.html#reference-code-from-file
+> 코드블럭도 접어둘 수 있어요!
+> `{collapsible="true" default-state="collapsed"}`
+> 위 속성을 한줄 띄고 적용해보세요!
 
-### 단축키
+아직도 코드 블럭에 관련된 설정이 많아요..
+나머지는 [공식 문서](https://www.jetbrains.com/help/writerside/code.html)를 참고하세요!
 
-<shortcut>Ctrl+C</shortcut>
+### 콜아웃? 강조? 인용? Admonitions
 
-### Admonitions, 콜아웃
+제품마다 부르는 말이 많은데요 WriterSide 에서는 Admonitions 이라 해요.
+```markdown
 
->
->
+> 이건 팁입니다
+{style="tip"} // 기본 설정이에요!
+
+
+> 이건 노트에요
 {style="note"}
 
->
->
+> 이건 경고에요!
+{style="warning"}
+```
+
+> 이건 팁 입니다
 {style="tip"}
 
->
->
+> 이건 노트에요
+{style="note"}
+
+> 이건 경고에요!
 {style="warning"}
 
->
-{title="dadasd"}
 
-### TLDR : too long; didn't read
 
-<tldr>
-<p></p>
-</tldr>
+### 그 밖의 많은 것들은...
 
-### 요약
+너무 많은 내용을 정리하고 있다는 생각이 들었습니다.
+그 밖에 것들은 간단히 이름과 링크만 남겨 둘게요!!
 
-### 첨부파일
-
-https://www.jetbrains.com/help/writerside/downloadable-resources.html?keymap=macOS
-
-### mermaid
-
-https://www.jetbrains.com/help/writerside/mermaid-diagrams.html?keymap=macOS#git_example
-
-### PlantUML diagrams
-
-https://www.jetbrains.com/help/writerside/plantuml-diagrams.html?keymap=macOS
-
-### 수식 표현
-
-<primary-label ref="label"/>
-<secondary-label ref="wip"/>
-<secondary-label ref="beta"/>
-
-https://www.jetbrains.com/help/writerside/math-support.html?keymap=macOS
+- [Tabs](https://www.jetbrains.com/help/writerside/tabs.html)
+- [TLDR](https://www.jetbrains.com/help/writerside/tl-dr-blocks.html) : too long; didn't read
+- [요약](https://www.jetbrains.com/help/writerside/summary-elements.html)
+- [첨부파일](https://www.jetbrains.com/help/writerside/downloadable-resources.html)
+- [mermaid](https://www.jetbrains.com/help/writerside/mermaid-diagrams.html)
+- [수식 표현](https://www.jetbrains.com/help/writerside/math-support.html)

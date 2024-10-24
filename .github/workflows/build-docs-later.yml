@@ -116,8 +116,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: |
-            Woo7Docs  # Woo7Docs 경로
-            Not-Yet  # Not-Yet 경로
+            Woo7Docs  # Woo7Docs
+            Not-Yet  # Not-Yet
 
       - name: Deploy to GitHub Pages
         id: deployment
