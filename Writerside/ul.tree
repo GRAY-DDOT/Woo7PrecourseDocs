@@ -10,8 +10,11 @@
         <toc-element topic="2주차-자동차-경주.md">
             <toc-element topic="2주차-미션-요약.md"/>
             <toc-element topic="2주차-요구사항-분석.md"/>
-            <toc-element topic="2주차-주간-학습-정리.md"/>
+            <toc-element topic="2주차-주간-학습-정리.md">
+                <toc-element topic="missonutils-Console.md"/>
+            </toc-element>
         </toc-element>
     </toc-element>
-    <toc-element topic="UL-학습-문서.md"/>
+    <toc-element topic="UL-학습-문서.md">
+    </toc-element>
 </instance-profile>
