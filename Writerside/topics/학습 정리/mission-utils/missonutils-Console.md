@@ -489,7 +489,7 @@ class ApplicationTest extends NsTest {
 
 {collapsible="true" default-state="collapsed"}
 
-해당 `ApplicationTest.java`는 missionutils의 `NsTest`를 import 합니다.
+해당 `ApplicationTest.java`는 missionutils의 `NsTest`를 extends, import 합니다.
 `run()`, `runException()` 두 메서드가 정의되지 않고 사용됩니다.
 `runMain()` 메서드는 `@Override` 어노테이션이 붙어있네요.
 `NsTest`에 무엇인가 있는 것 같군요.
