@@ -118,4 +118,12 @@
         <description>Created after removal of "나중에 업로드" from Upload Lator</description>
         <accepts>upload-lator.html</accepts>
     </rule>
+    <rule id="7c2ed706">
+        <description><![CDATA[Created after removal of "<2주차-주간-학습-정리1.md>" from DDOTWoowaPreDocs]]></description>
+        <accepts>2주차-주간-학습-정리1.html</accepts>
+    </rule>
+    <rule id="67dda1a3">
+        <description><![CDATA[Created after removal of "<2주차-요구사항-분석1.md>" from DDOTWoowaPreDocs]]></description>
+        <accepts>2주차-요구사항-분석1.html</accepts>
+    </rule>
 </rules>
