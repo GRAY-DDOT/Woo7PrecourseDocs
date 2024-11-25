@@ -6,6 +6,10 @@
                   name="DDOTWoowaPreDocs"
                   start-page="또찌의-프리코스-도서관.md">
 
+    <toc-element topic="2주차-요구사항-분석1.md"/>
+    <toc-element topic="2주차-주간-학습-정리1.md"/>
+    <toc-element topic="2주차-미션-요약1.md"/>
+    <toc-element topic="2주차-자동차-경주1.md"/>
     <toc-element topic="또찌의-프리코스-도서관.md">
         <toc-element topic="문서-관리-규칙.md"/>
     </toc-element>
